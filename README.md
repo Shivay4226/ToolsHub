@@ -18,6 +18,7 @@ A sleek, responsive, and user-friendly **Loan Eligibility Checker** web tool tha
 
 ## 📷 Preview
   <img width="2560" height="3009" alt="image" src="https://github.com/user-attachments/assets/8a03288a-0223-4182-8f58-8adc1164ded5" />
-  <img width="2560" height="3009" alt="image" src="https://github.com/user-attachments/assets/63ec9e36-9501-4c13-abc9-0f22783b7d21" />
+  <img width="2560" height="3009" alt="image" src="https://github.com/user-attachments/assets/bfbd226a-d03a-4e3a-aa99-6b0736ea2dbc" />
+
 
 
