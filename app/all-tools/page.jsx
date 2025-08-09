@@ -12,11 +12,14 @@ export default function AllToolsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-foreground mb-4">
+      <div className="text-center mb-16">
+        <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/20 dark:from-primary/20 dark:to-primary/30 rounded-3xl mb-6">
+          <span className="text-3xl">🛠️</span>
+        </div>
+        <h1 className="text-5xl font-bold text-foreground dark:text-card-foreground mb-6">
           All Tools
         </h1>
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+        <p className="text-xl text-muted-foreground dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
           Explore our complete collection of free online tools. Find the perfect tool for your needs across multiple categories.
         </p>
       </div>
@@ -32,13 +35,15 @@ export default function AllToolsPage() {
 
         return (
           <section key={category.id} className="mb-12">
-            <div className="flex items-center mb-6">
-              <span className="text-3xl mr-3 text-primary">{category.icon}</span>
+            <div className="flex items-center mb-8">
+              <div className="w-14 h-14 bg-gradient-to-br from-primary/10 to-primary/20 dark:from-primary/20 dark:to-primary/30 rounded-2xl flex items-center justify-center mr-4">
+                <span className="text-2xl">{category.icon}</span>
+              </div>
               <div>
-                <h2 className="text-2xl font-bold text-foreground">
+                <h2 className="text-3xl font-bold text-foreground dark:text-card-foreground mb-2">
                   {category.name}
                 </h2>
-                <p className="text-muted-foreground">{category.description}</p>
+                <p className="text-muted-foreground dark:text-gray-400 text-lg leading-relaxed">{category.description}</p>
               </div>
             </div>
             

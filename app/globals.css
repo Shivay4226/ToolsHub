@@ -1,15 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  * {
+    font-family: 'Poppins', sans-serif;
+  }
+  
   body {
-    font-family: 'Public Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     @apply antialiased;
+    color: rgba(47, 43, 61, 0.9);
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-semibold tracking-tight;
+    color: rgba(47, 43, 61, 0.9);
   }
 
   /* Smooth scroll behavior */
@@ -18,52 +26,79 @@
   }
 }
 
+@layer utilities {
+  .bg-primary-gradient {
+    background: linear-gradient(270deg, rgba(115, 103, 240, 0.7) 0%, #7367f0 100%);
+  }
+  
+  .text-primary-gradient {
+    background: linear-gradient(270deg, rgba(115, 103, 240, 0.7) 0%, #7367f0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .border-primary-gradient {
+    border-image: linear-gradient(270deg, rgba(115, 103, 240, 0.7) 0%, #7367f0 100%) 1;
+  }
+  
+  .shadow-primary-glow {
+    box-shadow: 0 4px 20px rgba(115, 103, 240, 0.3);
+  }
+  
+  .hover\:shadow-primary-glow:hover {
+    box-shadow: 0 8px 30px rgba(115, 103, 240, 0.4);
+  }
+}
+
 @layer base {
   :root {
-    /* Teal Blue (Primary) */
-    --primary: 184 70% 35%;
+    /* Primary highlight color */
+    --primary: 245, 82%, 67%; /* #7367F0 */
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 184 70% 40%;
+    --primary-hover: 258 92% 72%;
+    --primary-gradient: linear-gradient(270deg, rgba(115, 103, 240, 0.7) 0%, #7367f0 100%);
     
-    /* Light Blue (Secondary) */
-    --secondary: 195 100% 85%;
-    --secondary-foreground: 200 100% 20%;
+    /* Secondary colors */
+    --secondary: 258 20% 95%;
+    --secondary-foreground: 245, 82%, 67%;
     
-    /* Light Gray (Background/Neutral) */
+    /* Background and text colors */
     --background: 0 0% 98%;
-    --foreground: 200 15% 15%;
+    --foreground: 222 47% 20%; /* rgba(47, 43, 61, 0.9) */
     --card: 0 0% 100%;
-    --card-foreground: 200 15% 15%;
+    --card-foreground: 222 47% 20%;
     --popover: 0 0% 100%;
-    --popover-foreground: 200 15% 15%;
-    --muted: 200 15% 96%;
-    --muted-foreground: 200 10% 45%;
-    --accent: 195 70% 90%;
-    --accent-foreground: 200 100% 20%;
+    --popover-foreground: 222 47% 20%;
+    --muted: 222 13% 96%;
+    --muted-foreground: 222 47% 20% / 0.7;
+    --accent: 258 20% 95%;
+    --accent-foreground: 245, 82%, 67%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 200 15% 90%;
-    --input: 200 15% 90%;
-    --ring: 184 70% 35%;
-    --radius: 0.5rem;
+    --border: 222 13% 90%;
+    --input: 222 13% 90%;
+    --ring: 245, 82%, 67%;
+    --radius: 0.75rem;
   }
 
   .dark {
-    /* Darker Teal Blue (Primary) */
-    --primary: 184 70% 40%;
+    /* Primary highlight color (same gradient works in dark mode) */
+    --primary: 245, 82%, 67%; /* #7367F0 */
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 184 70% 45%;
+    --primary-hover: 258 92% 72%;
+    --primary-gradient: linear-gradient(270deg, rgba(115, 103, 240, 0.7) 0%, #7367f0 100%);
     
-    /* Darker Light Blue (Secondary) */
-    --secondary: 200 70% 20%;
-    --secondary-foreground: 195 100% 85%;
+    /* Secondary colors for dark mode */
+    --secondary: 258 20% 15%;
+    --secondary-foreground: 245, 82%, 67%;
     
-    /* Dark Theme */
-    --background: 200 15% 8%;
-    --foreground: 0 0% 95%;
-    --card: 200 15% 10%;
-    --card-foreground: 0 0% 95%;
-    --popover: 200 15% 10%;
+    /* Dark theme backgrounds and text */
+    --background: 222 84% 5%; /* Very dark background */
+    --foreground: 210 40% 95%; /* Light text */
+    --card: 222 84% 7%; /* Slightly lighter than background */
+    --card-foreground: 210 40% 95%;
+    --popover: 222 84% 7%;
     --popover-foreground: 0 0% 95%;
     --muted: 200 15% 15%;
     --muted-foreground: 200 10% 65%;

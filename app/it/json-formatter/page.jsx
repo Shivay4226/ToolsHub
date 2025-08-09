@@ -152,7 +152,7 @@ export default function JSONFormatterPage() {
               <div className="flex gap-2 mt-3">
                 <button
                   onClick={formatJSON}
-                  className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
+                  className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary transition-colors"
                 >
                   Format JSON
                 </button>
