@@ -28,7 +28,6 @@ export async function generateMetadata({ params }) {
 export default function CategoryPage({ params }) {
   const category = getCategoryById(params.category);
   const tools = getToolsByCategory(params.category);
-  console.log(tools);
 
   if (!category) {
     notFound();

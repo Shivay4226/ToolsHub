@@ -40,28 +40,70 @@ export default function DomainAvailabilityCheckerPage() {
     };
   }
 
+  // Function to generate related domain suggestions
+  function generateDomainSuggestions(name, extension) {
+    const prefixes = ['get', 'my', 'the', 'go', 'try', 'best'];
+    const suffixes = ['hub', 'app', 'online', 'pro', 'site', 'world'];
+    const numbers = [101, 123, 360, 247, 999];
+    const otherExtensions = ['net', 'org', 'co', 'io', 'dev', 'app', 'xyz', 'ai', 'tech'];
+
+    const suggestions = new Set();
+
+    prefixes.forEach(pre => suggestions.add(`${pre}${name}.${extension}`));
+    suffixes.forEach(suf => suggestions.add(`${name}${suf}.${extension}`));
+    numbers.forEach(num => suggestions.add(`${name}${num}.${extension}`));
+    otherExtensions.forEach(ext => suggestions.add(`${name}.${ext}`));
+
+    return Array.from(suggestions);
+  }
+
+
+  // Function to check domain availability
+  async function checkDomainAvailability(checkDomain) {
+    try {
+      const res = await fetch(
+        `https://dns.google/resolve?name=${encodeURIComponent(checkDomain)}&type=NS`
+      );
+      const data = await res.json();
+      return data.Status === 3 || !data.Answer; // true if available
+    } catch {
+      return false;
+    }
+  }
+
+  // Main check function
   async function handleCheckAvailability() {
     setError('');
     setResults(null);
+
     if (!domain.trim()) {
       setError('Please enter a domain name.');
       return;
     }
+
     const parsed = parseDomain(domain);
     if (!parsed) {
       setError('Please enter a valid domain name including extension (e.g. example.com).');
       return;
     }
+
     setLoading(true);
     try {
-      const res = await fetch(
-        `https://dns.google/resolve?name=${encodeURIComponent(domain.trim())}&type=NS`
-      );
-      const data = await res.json();
-      if (data.Status === 3 || !data.Answer) {
+      const isAvailable = await checkDomainAvailability(domain.trim());
+
+      if (isAvailable) {
         setResults({ available: true });
       } else {
-        setResults({ available: false });
+        const suggestions = generateDomainSuggestions(parsed.name, parsed.extension);
+        console.log('Suggestions:', suggestions); // Debugging
+        const availableSuggestions = [];
+
+        for (let sug of suggestions) {
+          const sugAvailable = await checkDomainAvailability(sug);
+          if (sugAvailable) availableSuggestions.push(sug);
+        }
+
+        setResults({ available: false, suggestions: availableSuggestions });
       }
     } catch (e) {
       setError('Failed to check domain availability. Please try again later.');
@@ -70,7 +112,6 @@ export default function DomainAvailabilityCheckerPage() {
       setLoading(false);
     }
   }
-
 
   const toolSchema = generateToolSchema({
     title: 'Domain Availability Checker',
@@ -136,16 +177,36 @@ export default function DomainAvailabilityCheckerPage() {
 
             {/* Result display */}
             {results && (
-              <div
-                className={`mt-6 p-4 rounded border text-center font-semibold ${results.available
-                    ? 'bg-green-100 border-green-400 text-green-700'
-                    : 'bg-red-100 border-red-400 text-red-700'
-                  }`}
-              >
-                {results.available
-                  ? `Good news! The domain "${domain.trim()}" is available for registration.`
-                  : `Sorry, the domain "${domain.trim()}" is already taken.`}
-              </div>
+              <>
+                <div
+                  className={`mt-6 p-4 rounded border text-center font-semibold ${results.available
+                      ? 'bg-green-100 border-green-400 text-green-700'
+                      : 'bg-red-100 border-red-400 text-red-700'
+                    }`}
+                >
+                  {results.available
+                    ? `Good news! The domain "${domain.trim()}" is available for registration.`
+                    : `Sorry, the domain "${domain.trim()}" is already taken.`}
+                </div>
+
+                {/* Suggestions */}
+                {!results.available && results.suggestions?.length > 0 && (
+                  <div className="mt-4 p-4 bg-gray-50 border border-gray-200 rounded">
+                    <p className="font-semibold mb-2">Available Alternatives:</p>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                      {results.suggestions.map((sug, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => { setDomain(sug); handleCheckAvailability(sug); }}
+                          className="p-3 border rounded-lg text-center hover:bg-primary/10 transition"
+                        >
+                          {sug}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>
