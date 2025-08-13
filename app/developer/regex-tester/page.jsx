@@ -88,7 +88,7 @@ export default function RegexTesterPage() {
   const toolSchema = generateToolSchema({
     title: 'Regex Tester Online',
     description: 'Test and debug your regular expressions instantly in your browser.',
-    url: '/tools/regex-tester',
+    url: '/developer/regex-tester',
   });
 
   const faqSchema = generateFAQSchema(faqs);

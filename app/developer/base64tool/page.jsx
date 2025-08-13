@@ -89,7 +89,7 @@ export default function Base64ToolPage() {
     const toolSchema = generateToolSchema({
         title: 'Base64 Encoder & Decoder',
         description: 'Encode and decode Base64 online. Convert text or files to Base64 and back quickly and securely.',
-        url: '/tools/base64-encoder-decoder'
+        url: '/developer/base64-encoder-decoder'
     });
 
     const faqSchema = generateFAQSchema(faqs);

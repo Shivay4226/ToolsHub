@@ -97,7 +97,7 @@ export default function JSONFormatterPage() {
   const toolSchema = generateToolSchema({
     title: 'JSON Formatter & Validator',
     description: 'Format, validate, and beautify JSON data online. Fast, free, and secure JSON formatter tool.',
-    url: '/it/json-formatter'
+    url: '/developer/json-formatter'
   });
 
   const faqSchema = generateFAQSchema(faqs);

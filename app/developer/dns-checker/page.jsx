@@ -69,7 +69,7 @@
     const toolSchema = generateToolSchema({
       title: 'DNS Checker',
       description: 'Check all DNS record types for any domain instantly using Google DNS-over-HTTPS API.',
-      url: '/tools/dns-checker'
+      url: '/developer/dns-checker'
     });
 
     const faqSchema = generateFAQSchema(faqs);

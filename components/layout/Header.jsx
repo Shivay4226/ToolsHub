@@ -6,6 +6,7 @@ import { Menu, X } from 'lucide-react';
 import { categories } from '@/lib/tools-data';
 import ThemeToggle from '@/components/theme/ThemeToggle';
 import GlobalSearch from '@/components/ui/GlobalSearch';
+import { IconComponent } from '@/lib/utils';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,7 +14,7 @@ export default function Header() {
   return (
     <header className="bg-background/80 backdrop-blur-sm border-b border-border sticky top-0 z-50">
       <nav className="mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-around items-center h-16">
           <div className="flex items-center">
             <Link href="/" className="text-2xl font-bold text-primary">
               ToolsHub
@@ -21,7 +22,7 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:block ">
             <div className="ml-10 flex items-baseline space-x-1">
               {categories.map((category) => (
                 <Link
@@ -29,18 +30,18 @@ export default function Header() {
                   href={`/${category.id}`}
                   className="text-muted-foreground hover:text-primary px-3 py-2 rounded-md text-md font-medium transition-colors"
                 >
-                  <span className="mr-1.5">{category.icon}</span> {category.name}
+                  <span className="mr-1.5"></span> {category.name}
                 </Link>
               ))}
             </div>
           </div>
 
           {/* Global Search */}
-          <div className="hidden md:block flex-1 max-w-md mx-8">
-            <GlobalSearch />
-          </div>
 
           <div className="flex items-center gap-2">
+            <div className="hidden md:block flex-1 w-[300px]">
+              <GlobalSearch />
+            </div>
             <ThemeToggle />
             {/* Mobile menu button */}
             <div className="md:hidden">
@@ -63,7 +64,7 @@ export default function Header() {
               <div className="mb-4">
                 <GlobalSearch />
               </div>
-              
+
               {/* Mobile Menu Links */}
               <div className="space-y-1">
                 {categories.map((category) => (
@@ -73,7 +74,7 @@ export default function Header() {
                     className="text-muted-foreground hover:text-foreground hover:bg-accent block px-3 py-2 rounded-md text-base font-medium transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    <span className="mr-2">{category.icon}</span> {category.name}
+                    {category.name}
                   </Link>
                 ))}
               </div>

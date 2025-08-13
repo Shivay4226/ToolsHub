@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { categories, getFeaturedTools } from '@/lib/tools-data';
 import ToolCard from '@/components/ui/ToolCard';
 import AdBanner from '@/components/ads/AdBanner';
-import { generateSchema } from '@/lib/utils';
+import { generateSchema, IconComponent } from '@/lib/utils';
 
 export default function HomePage() {
   const featuredTools = getFeaturedTools();
@@ -22,13 +22,14 @@ export default function HomePage() {
     }
   });
 
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: websiteSchema }}
       />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <section className="py-12 md:py-20 text-center">
@@ -37,10 +38,10 @@ export default function HomePage() {
             <span className="block text-primary">for Everyone</span>
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Discover powerful, fast, and completely free online tools for IT professionals, 
+            Discover powerful, fast, and completely free online tools for IT professionals,
             developers, students, and businesses. No registration required.
           </p>
-          
+
           {/* CTA Buttons */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <Link href="/all-tools" className="bg-primary-gradient text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:shadow-primary-glow hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
@@ -53,7 +54,7 @@ export default function HomePage() {
               Browse Categories
             </Link>
           </div>
-          
+
           <div className="flex flex-wrap justify-center gap-6 mb-16">
             <div className="bg-white dark:bg-card px-6 py-3 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md dark:hover:shadow-gray-900/40 transition-all duration-300">
               <span className="text-foreground dark:text-card-foreground font-medium flex items-center gap-2">
@@ -89,17 +90,17 @@ export default function HomePage() {
               <Link key={category.id} href={`/${category.id}`} className="group">
                 <div className="bg-white dark:bg-card border border-gray-200 dark:border-gray-700 rounded-xl p-8 text-center hover:shadow-lg dark:hover:shadow-gray-900/40 transition-all duration-300 group-hover:border-gray-300 dark:group-hover:border-gray-600 hover:-translate-y-1">
                   <div className="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/10 dark:group-hover:bg-primary/20 transition-colors duration-300">
-                    <span className="text-3xl">{category.icon}</span>
+                    <IconComponent name={category.icon} size={24} />
                   </div>
-                  
+
                   <h3 className="text-xl font-semibold text-foreground dark:text-card-foreground mb-4">
                     {category.name}
                   </h3>
-                  
+
                   <p className="text-muted-foreground dark:text-gray-400 mb-6 leading-relaxed">
                     {category.description}
                   </p>
-                  
+
                   <div className="inline-flex items-center text-primary font-medium group-hover:translate-x-1 transition-transform duration-300">
                     <span className="mr-2">Explore Tools</span>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,16 +123,16 @@ export default function HomePage() {
               Our most used tools, trusted by thousands of users daily
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredTools.slice(0, 6).map((tool) => (
               <ToolCard key={tool.id} tool={tool} category={tool.category} />
             ))}
           </div>
-          
+
           <div className="text-center mt-12">
-            <Link 
-              href="/all-tools" 
+            <Link
+              href="/all-tools"
               className="bg-primary-gradient text-white px-10 py-4 rounded-2xl font-semibold text-lg hover:shadow-primary-glow hover:-translate-y-1 transition-all duration-300 inline-flex items-center gap-2"
             >
               <span>View All Tools</span>

@@ -117,7 +117,7 @@ HSL: hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)
   const toolSchema = generateToolSchema({
     title: 'Color Picker & Generator',
     description: 'Pick, generate, and copy colors in HEX, RGB, and HSL formats. Developer-friendly online color picker tool.',
-    url: '/it/color-picker'
+    url: '/developer/color-picker'
   });
 
   const faqSchema = generateFAQSchema(faqs);

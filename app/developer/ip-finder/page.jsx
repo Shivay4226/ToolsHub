@@ -123,7 +123,7 @@ export default function IpAddressInfoFinder() {
   const toolSchema = generateToolSchema({
     title: 'IP Address Info Finder',
     description: 'Find your public IP or lookup any IP/hostname info including location, ISP, and more.',
-    url: '/tools/ip-address-info-finder'
+    url: '/developer/ip-address-info-finder'
   });
 
   const faqSchema = generateFAQSchema(faqs);

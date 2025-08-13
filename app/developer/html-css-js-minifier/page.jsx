@@ -135,7 +135,7 @@ export default function HtmlCssJsMinifier() {
   const toolSchema = generateToolSchema({
     title: 'HTML, CSS, JS Minifier',
     description: 'Minify your HTML, CSS, or JavaScript code easily online to reduce file size and improve performance.',
-    url: '/tools/html-css-js-minifier'
+    url: '/developer/html-css-js-minifier'
   });
 
   const faqSchema = generateFAQSchema(faqs);

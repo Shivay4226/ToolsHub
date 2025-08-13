@@ -116,7 +116,7 @@ export default function DomainAvailabilityCheckerPage() {
   const toolSchema = generateToolSchema({
     title: 'Domain Availability Checker',
     description: 'Check if any domain name is available for registration instantly.',
-    url: '/tools/domain-availability-checker'
+    url: '/developer/domain-availability-checker'
   });
 
   const faqSchema = generateFAQSchema(faqs);
